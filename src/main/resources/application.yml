@@ -6,6 +6,8 @@ server:
     threads:
       max: 6
       min-spare: 2
+  shutdown: graceful
+
 polar:
   greeting: Welcome to the local book catalog!
 
@@ -14,7 +16,9 @@ spring:
     name: catalog-service
   config:
     import: "optional:configserver:"
-#  cloud:
+  lifecycle:
+    timeout-per-shutdown-phase: 15s
+  #  cloud:
 #    config:
 #      uri: http://localhost:8888
 #      request-connect-timeout: 5000
